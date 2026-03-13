@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interaktiver Chat</title>
+
+<style>
+/* --- dein bisheriger CSS Code --- */
+body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;margin:0;background:#e5ddd5;display:flex;flex-direction:column;height:100vh;}
+#status-bar{display:flex;align-items:center;padding:10px;background:#075E54;color:#fff;font-weight:bold;gap:8px;}
+.status-dot{width:10px;height:10px;border-radius:50%;background:green;}
+#chat-container{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px;background:#ece5dd;transition:background 1s,opacity 1s;}
+.message{max-width:70%;padding:8px 12px;border-radius:20px;line-height:1.4;word-wrap:break-word;box-shadow:0 1px 2px rgba(0,0,0,0.2);}
+.joana{align-self:flex-start;background:#fff;}
+.player{align-self:flex-end;background:#dcf8c6;}
+#input-container{display:flex;flex-direction:column;padding:5px;background:#f0f0f0;}
+#options{display:flex;flex-direction:column;gap:5px;max-height:0;overflow:hidden;opacity:0;transition:max-height .3s ease,opacity .3s ease;}
+#options.show{max-height:500px;opacity:1;}
+#options button{background:#25D366;border-radius:20px;padding:8px 12px;color:#fff;font-weight:bold;cursor:pointer;border:none;}
+#options button:hover{background:#128C7E;}
+.typing{display:flex;gap:3px;}
+.dot{width:6px;height:6px;background:#999;border-radius:50%;animation:bounce 1s infinite;}
+.dot:nth-child(2){animation-delay:.2s}
+.dot:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
+.fade-out{opacity:0;background:#000 !important;}
+.cinematic-message{max-width:90%;align-self:center;background:#111;color:#eee;font-style:italic;padding:20px;border-radius:12px;line-height:1.6;}
+</style>
+</head>
+
+<body>
+
+<div id="status-bar">
+<div id="status-dot" class="status-dot"></div>
+<div>Joana (<span id="status-text">online</span>)</div>
+</div>
+
+<div id="chat-container"></div>
+
+<div id="input-container">
+<div id="options"></div>
+<button id="wait-button" style="display:none;">Warten bis sie online ist</button>
+</div>
+
+<div id="wait-overlay" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.7);color:white;padding:20px;border-radius:10px;">
+<div class="typing">
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+</div>
+</div>
+
+<script>
+let story=[]
+let endings=[]
+let currentScene=null
+let roundIndex=0
+let scores={trust:0,anxiety:0,obsession:0,social_risk:0}
+let offlineCounter=0
+
+const chat=document.getElementById("chat-container")
+const options=document.getElementById("options")
+const waitButton=document.getElementById("wait-button")
+const statusDot=document.getElementById("status-dot")
+const statusText=document.getElementById("status-text")
+
+fetch("story.json").then(r=>r.json()).then(data=>{
+    story=data.scenes
+    endings=data.endings
+    loadScene("start")
+})
+
+function setStatus(online){
+    statusDot.style.background=online?"green":"gray"
+    statusText.textContent=online?"online":"offline"
+}
+
+function scrollBounds(){
+    chat.scrollTop=chat.scrollHeight
+    window.scrollTo({top:document.body.scrollHeight})
+}
+
+function addMessage(sender,text){
+    const m=document.createElement("div")
+    m.className="message "+sender
+    m.textContent=text
+    chat.appendChild(m)
+    scrollBounds()
+}
+
+function typeMessagePlayer(text){
+    return new Promise(resolve=>{
+        const msg=document.createElement("div")
+        msg.className="message player"
+        chat.appendChild(msg)
+        let i=0
+        function typeChar(){
+            if(i<text.length){ msg.textContent+=text[i]; i++; scrollBounds(); setTimeout(typeChar,25+Math.random()*30)}
+            else resolve()
+        }
+        typeChar()
+    })
+}
+
+function typeMessageJoana(text,callback){
+    const typing=document.createElement("div")
+    typing.className="message joana"
+    const dots=document.createElement("div")
+    dots.className="typing"
+    for(let i=0;i<3;i++){const d=document.createElement("div"); d.className="dot"; dots.appendChild(d);}
+    typing.appendChild(dots)
+    chat.appendChild(typing)
+    scrollBounds()
+    setTimeout(()=>{
+        typing.remove()
+        addMessage("joana",text)
+        if(callback)callback()
+    },Math.max(1000,text.length*70))
+}
+
+function loadScene(id){
+    const scene=story.find(s=>s.id===id)
+    if(!scene)return
+    currentScene=scene
+    roundIndex=0
+    showNextRound()
+}
+
+function showNextRound(){
+    if(roundIndex>=currentScene.rounds.length){
+        offlineCounter++
+        if(offlineCounter>=randomInt(3,10)){ showOfflineNotice(); offlineCounter=0 }
+        else goNextScene()
+        return
+    }
+    showOptions(currentScene.rounds[roundIndex])
+}
+
+function showOptions(round){
+    options.innerHTML=""
+    options.classList.remove("show")
+    setTimeout(()=>{
+        round.playerOptions.forEach(opt=>{
+            const btn=document.createElement("button")
+            btn.textContent=opt.text
+            btn.onclick=async()=>{
+                options.classList.remove("show")
+                await typeMessagePlayer(opt.text)
+                // Scores addieren
+                for(let k in opt.scores) scores[k]=(scores[k]||0)+opt.scores[k]
+                // Wenn forceNextScene definiert ist, lade direkt diese Szene
+                if(opt.forceNextScene){
+                    loadScene(opt.forceNextScene)
+                    return
+                }
+                roundIndex++
+                setTimeout(()=>{ typeMessageJoana(round.joanaResponse,showNextRound) },randomInt(500,2000))
+            }
+            options.appendChild(btn)
+        })
+        options.classList.add("show")
+        setTimeout(scrollBounds,150)
+    },300)
+}
+
+function showOfflineNotice(){
+    addMessage("joana","Joana ist offline…")
+    setStatus(false)
+    waitButton.style.display="block"
+    waitButton.onclick=()=>{
+        waitButton.style.display="none"
+        const overlay=document.getElementById("wait-overlay")
+        overlay.style.display="flex"
+        setTimeout(()=>{
+            overlay.style.display="none"
+            setStatus(true)
+            showNextRound()
+        },randomInt(2000,4000))
+    }
+}
+
+function goNextScene(){
+    if(!currentScene.nextSceneLogic){ checkEndings(); return }
+    let candidate=null
+    let minDiff=Infinity
+    currentScene.nextSceneLogic.forEach(logic=>{
+        let diff=0
+        for(let k in logic.conditions) diff+=Math.abs((scores[k]||0)-logic.conditions[k])
+        if(diff<minDiff){ minDiff=diff; candidate=logic.nextScene }
+    })
+    if(candidate){ loadScene(candidate) }
+    else{ checkEndings() }
+}
+
+function checkEndings(){
+    if(!endings||endings.length===0){ addMessage("joana","=== Ende ==="); return }
+    let best=null, minDiff=Infinity
+    endings.forEach(end=>{
+        let diff=0
+        if(end.conditions){ for(let k in end.conditions) diff+=Math.abs((scores[k]||0)-end.conditions[k]) }
+        if(diff<minDiff){ minDiff=diff; best=end }
+    })
+    if(!best) best=endings[0]
+    playCinematicEnding(best)
+}
+
+function playCinematicEnding(end){
+    typeMessageJoana(end.joanaResponse,()=>{
+        setTimeout(()=>{
+            fadeOutChat(()=>{ showNarrative(end.narrative) })
+        },randomInt(2000,4000))
+    })
+}
+
+function fadeOutChat(callback){
+    chat.classList.add("fade-out")
+    setTimeout(callback,2000)
+}
+
+function showNarrative(text){
+    chat.innerHTML=""
+    chat.classList.remove("fade-out")
+    const msg=document.createElement("div")
+    msg.className="cinematic-message"
+    chat.appendChild(msg)
+    let i=0
+    function typeChar(){
+        if(i<text.length){ msg.textContent+=text[i]; i++; scrollBounds(); setTimeout(typeChar,20)}
+    }
+    typeChar()
+}
+
+function randomInt(min,max){ return Math.floor(Math.random()*(max-min+1)+min) }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{
+  "version": "0.1",
+  "scenes": [
+    {
+      "id": "start",
+      "theme": "Dunkler, verstörender Chatbeginn",
+      "rounds": [
+        {
+          "playerOptions": [
+            {"text": "Hi… ich habe dich schon eine Weile beobachtet.", "scores": {"trust": 1, "anxiety": 1, "obsession": 2, "social_risk": 0}},
+            {"text": "Hallo.", "scores": {"trust": 0, "anxiety": 0, "obsession": 1, "social_risk": 0}},
+            {"text": "...", "scores": {"trust": -1, "anxiety": 2, "obsession": 1, "social_risk": 0}}
+          ],
+          "joanaResponse": "Ich habe dich auch gesehen. Es ist still… zu still, und doch spüre ich etwas in deiner Anwesenheit."
+        },
+        {
+          "playerOptions": [
+            {"text": "Ich schreibe selten.", "scores": {"trust": 1, "anxiety": 1, "obsession": 1, "social_risk": 0}},
+            {"text": "Ich rede kaum online.", "scores": {"trust": 0, "anxiety": 1, "obsession": 1, "social_risk": 0}},
+            {"text": "Ich bin vorsichtig.", "scores": {"trust": -1, "anxiety": 2, "obsession": 2, "social_risk": 0}}
+          ],
+          "joanaResponse": "Vielleicht bist du vorsichtig, oder interessiert. Ich spüre die Spannung in deinen Worten, das Zögern, die Angst, etwas zu verlieren."
+        },
+        {
+          "playerOptions": [
+            {"text": "Vielleicht beides.", "scores": {"trust": 1, "anxiety": 1, "obsession": 1, "social_risk": 0}},
+            {"text": "Ich weiß nicht genau.", "scores": {"trust": 0, "anxiety": 1, "obsession": 1, "social_risk": 0}},
+            {"text": "Ich will niemanden enttäuschen.", "scores": {"trust": 1, "anxiety": 2, "obsession": 1, "social_risk": 0}}
+          ],
+          "joanaResponse": "Hm… Erwartungen können schwer wiegen. Ich sehe, wie du zwischen Ehrlichkeit und Zurückhaltung schwankst."
+        },
+        {
+          "playerOptions": [
+            {"text": "Ich will niemanden verletzen.", "scores": {"trust": 1, "anxiety": 1, "obsession": 0, "social_risk": 0}},
+            {"text": "Ich sorge mich zu viel.", "scores": {"trust": 0, "anxiety": 2, "obsession": 1, "social_risk": 0}},
+            {"text": "Vielleicht rede ich zu viel.", "scores": {"trust": 0, "anxiety": 1, "obsession": 0, "social_risk": 0}}
+          ],
+          "joanaResponse": "Interessant… manche reden zu viel, manche zu wenig. Du bist irgendwo dazwischen. Die Nacht ist still, und doch fühle ich dein Zögern."
+        },
+        {
+          "playerOptions": [
+            {"text": "Ich will ehrlich sein.", "scores": {"trust": 2, "anxiety": 0, "obsession": 1, "social_risk": 0}},
+            {"text": "Manchmal verstecke ich meine Gedanken.", "scores": {"trust": 0, "anxiety": 1, "obsession": 1, "social_risk": 0}},
+            {"text": "Vielleicht sollte ich schweigen.", "scores": {"trust": -1, "anxiety": 2, "obsession": 2, "social_risk": 0}}
+          ],
+          "joanaResponse": "Ehrlichkeit… selten und zerbrechlich. Ich höre zu, aber jedes Wort trägt Gewicht."
+        }
+      ]
+    }
+  ],
+  "endings": [
+    {
+      "conditions": {"trust":6, "anxiety":2, "obsession":1, "social_risk":0},
+      "joanaResponse": "Wir stehen am Rand von etwas, das wir noch nicht ganz begreifen.",
+      "narrative": "Er spürt, dass das Treffen unmittelbar bevorsteht. Jeder Schritt auf dem Weg zu ihr ist begleitet von pochendem Herzschlag, Schweiß auf der Stirn und einem Wirbel aus Gedanken, die sich überkreuzen. Sie steht schon da, vorsichtig, beobachtend, und ihr Blick wiegt auf ihn, prüft ihn, wägt ihn ab. Hoffnung und Angst existieren nebeneinander, jeder Atemzug ein Balanceakt zwischen Nähe und Rückzug."
+    },
+    {
+      "conditions": {"trust":3, "anxiety":4, "obsession":2, "social_risk":0},
+      "joanaResponse": "Du hast dich geöffnet, aber die Schatten bleiben.",
+      "narrative": "Die Worte hängen schwer zwischen ihnen. Ein Teil von ihm sehnt sich nach Nähe, ein anderer Teil zieht sich zurück. Ihre Präsenz ist beruhigend und zugleich verstörend, als würde jeder Blick ein Urteil fällen. Die Nacht umhüllt sie, während der digitale Austausch endet und die Stille zwischen ihnen ein Eigenleben annimmt."
+    },
+    {
+      "conditions": {"trust":2, "anxiety":5, "obsession":3, "social_risk":0},
+      "joanaResponse": "Die Dunkelheit umgibt uns beide, und du hältst dich fest an flüchtigen Gedanken.",
+      "narrative": "Er sitzt allein, das Licht des Bildschirms wirft lange Schatten in sein Zimmer. Jede Nachricht, die er sendet, ist ein Versuch, den Nebel in seinem Kopf zu ordnen, doch die Unsicherheit frisst sich tiefer. Sie antwortet, aber die Worte erreichen ihn wie durch einen Schleier. Ein Gefühl von Beklemmung mischt sich mit dem Wunsch nach Verbindung, doch die Verbindung bleibt brüchig."
+    },
+    {
+      "conditions": {"trust":1, "anxiety":6, "obsession":4, "social_risk":0},
+      "joanaResponse": "Du kämpfst, aber es ist, als würdest du gegen den Nebel deiner eigenen Gedanken rennen.",
+      "narrative": "Jede Nachricht, die er tippt, zittert in seinen Fingern. Die Dunkelheit ist dicht, die eigenen Gedanken lähmend. Ihr Tonfall ist sanft, fast beruhigend, doch die Distanz zwischen ihnen bleibt spürbar. Die Unsicherheit hat Überhand, und jedes Wort fühlt sich wie ein Schritt ins Leere an."
+    },
+    {
+      "conditions": {"trust":0, "anxiety":7, "obsession":5, "social_risk":0},
+      "joanaResponse": "Es ist schwer, etwas zu greifen, wenn alles um dich verschwimmt.",
+      "narrative": "Er verliert den Halt, seine Gedanken überschlagen sich. Das digitale Gespräch ist der letzte Rest einer Verbindung, die zerbricht, während die Angst ihn erdrückt. Jede Nachricht ist ein Schrei, jede Antwort ein ferner Widerhall. Am Ende bleibt nur ein Gefühl von Leere und Beklommenheit, das sich langsam in ihn hineinzieht."
+    }
+  ]
+}

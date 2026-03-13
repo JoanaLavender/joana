@@ -1,0 +1,457 @@
+{
+  "version": "0.3",
+  "scenes": [
+{
+  "id": "isolation_scene",
+  "theme": "Rückzug und Isolation",
+  "rounds": [
+    {
+      "playerOptions": [
+        {"text": "Willst du mir erklären, warum du dich zurückziehst?", "scores":{"trust":0,"anxiety":1}},
+        {"text": "Vielleicht sollte ich dich in Ruhe lassen.", "scores":{"trust":1,"anxiety":0}},
+        {"text": "Ich kann nicht aufhören, daran zu denken.", "scores":{"trust":0,"anxiety":2}, "forceNextScene":"anxiety_scene"}
+      ],
+      "joanaResponse": "Manchmal ist es schwer, den Tag zu überstehen. Ich spüre Augen auf mir, obwohl niemand da ist. Ich ziehe mich zurück, bevor ich etwas sage, das ich bereue."
+    },
+    {
+      "playerOptions": [
+        {"text": "Du musst mir vertrauen, ich bin nicht gegen dich.", "scores":{"trust":1,"anxiety":0}},
+        {"text": "Ich habe Angst, dass etwas passiert.", "scores":{"trust":0,"anxiety":2}},
+        {"text": "Willst du, dass ich gehe?", "scores":{"trust":0,"anxiety":1}}
+      ],
+      "joanaResponse": "Es ist nicht deine Schuld. Aber die Leere, die ich fühle, wird laut, und ich weiß nicht, wie ich sie abschalten kann. Ich brauche Abstand, sonst verliere ich mich."
+    },
+    {
+      "playerOptions": [
+        {"text": "Ich bleibe hier, egal was passiert.", "scores":{"trust":1,"anxiety":1}},
+        {"text": "Du spielst ein gefährliches Spiel mit dir selbst.", "scores":{"trust":0,"anxiety":2}, "forceNextScene":"anxiety_scene"},
+        {"text": "Vielleicht sollten wir heute nicht mehr schreiben.", "scores":{"trust":1,"anxiety":0}}
+      ],
+      "joanaResponse": "Du verstehst es nicht, glaube ich. Die Schatten folgen mir, auch in meinen eigenen Gedanken. Ich kann kaum unterscheiden, was echt ist."
+    },
+    {
+      "playerOptions": [
+        {"text": "Sag mir, wie ich dir helfen kann.", "scores":{"trust":1,"anxiety":0}},
+        {"text": "Ich fürchte, es wird schlimmer.", "scores":{"trust":0,"anxiety":2}, "forceNextScene":"anxiety_scene"},
+        {"text": "Vielleicht morgen?", "scores":{"trust":1,"anxiety":0}}
+      ],
+      "joanaResponse": "Morgen ist eine Lüge, die ich mir erzähle, um nicht zu zerbrechen. Aber heute… heute muss ich allein sein, sonst wird alles zu laut."
+    }
+  ],
+  "nextSceneLogic": [
+    {"conditions":{"trust":3},"nextScene":"friend_scene"}
+  ]
+},
+{
+  "id": "anxiety_scene",
+  "theme": "Unsicherheit und Angst",
+  "rounds": [
+    {
+      "playerOptions": [
+        {"text": "Ich habe das Gefühl, dass etwas nicht stimmt.", "scores":{"trust":0,"anxiety":2}},
+        {"text": "Es tut mir leid, wenn ich zu nah war.", "scores":{"trust":1,"anxiety":0}},
+        {"text": "Kannst du mir sagen, was du fühlst?", "scores":{"trust":1,"anxiety":0}}
+      ],
+      "joanaResponse": "Es ist nicht einfach zu erklären. Alles um mich herum wirkt dicht und still, und doch höre ich Schritte, die niemand macht. Ich weiß nicht, ob ich mir selbst traue."
+    },
+    {
+      "playerOptions": [
+        {"text": "Ich will nicht, dass du dich alleine fühlst.", "scores":{"trust":1,"anxiety":0}},
+        {"text": "Warum bist du so still?", "scores":{"trust":0,"anxiety":2}},
+        {"text": "Vielleicht sollten wir aufhören zu schreiben?", "scores":{"trust":0,"anxiety":1}, "forceNextScene":"isolation_scene"}
+      ],
+      "joanaResponse": "Still sein ist alles, was bleibt. Wenn ich schreibe, verliere ich mich in der Dunkelheit, die ich in mir trage. Schweigen ist mein Schutz."
+    },
+    {
+      "playerOptions": [
+        {"text": "Ich möchte, dass wir ehrlich bleiben.", "scores":{"trust":1,"anxiety":0}},
+        {"text": "Ich weiß nicht, wie lange ich das noch aushalte.", "scores":{"trust":0,"anxiety":2}},
+        {"text": "Kannst du mir helfen, dich zu verstehen?", "scores":{"trust":1,"anxiety":0}}
+      ],
+      "joanaResponse": "Ehrlich zu sein bedeutet, sich zu zeigen, wenn die Angst am lautesten ist. Ich will es, aber manchmal verschluckt mich die Stille."
+    },
+    {
+      "playerOptions": [
+        {"text": "Wir müssen einen Weg finden, das zu überstehen.", "scores":{"trust":1,"anxiety":0}},
+        {"text": "Es wird immer schlimmer.", "scores":{"trust":0,"anxiety":2}},
+        {"text": "Vielleicht reden wir später weiter?", "scores":{"trust":1,"anxiety":0}}
+      ],
+      "joanaResponse": "Später… ja. Später ist alles leiser, aber die Schatten bleiben. Ich muss lernen, mit ihnen zu atmen, ohne zu ersticken."
+    }
+  ],
+  "nextSceneLogic": [
+    {"conditions":{"trust":3},"nextScene":"friend_scene"}
+  ]
+},
+{
+  "id": "conflict_scene",
+  "theme": "Spannungen unter Freunden",
+  "rounds": [
+    {
+      "playerOptions": [
+        {"text": "Warum hast du dich gestern nicht gemeldet?", "scores":{"trust":0,"anxiety":1}, "forceNextScene":"isolation_scene"},
+        {"text": "Alles okay zwischen uns?", "scores":{"trust":1,"anxiety":0}},
+        {"text": "Du wirkst irgendwie distanziert.", "scores":{"trust":0,"anxiety":1}}
+      ],
+      "joanaResponse": "Ich wollte einfach nicht stören… und vielleicht habe ich mich ein wenig zurückgezogen. Ich hoffe, du nimmst es mir nicht übel."
+    },
+    {
+      "playerOptions": [
+        {"text": "Ich nehme dir nichts übel.", "scores":{"trust":1,"anxiety":0}},
+        {"text": "Es fühlt sich trotzdem komisch an.", "scores":{"trust":0,"anxiety":1}},
+        {"text": "Soll ich dich lieber alleine lassen?", "scores":{"trust":0,"anxiety":1}, "forceNextScene":"isolation_scene"}
+      ],
+      "joanaResponse": "Nein, du musst nicht weg. Es ist nur… manchmal ist es leichter, Abstand zu halten, auch wenn ich Nähe will."
+    },
+    {
+      "playerOptions": [
+        {"text": "Ich verstehe, ich bleibe geduldig.", "scores":{"trust":1,"anxiety":0}},
+        {"text": "Du könntest mir wenigstens sagen, was los ist.", "scores":{"trust":0,"anxiety":1}, "forceNextScene":"anxiety_scene"},
+        {"text": "Vielleicht rede ich zu viel.", "scores":{"trust":0,"anxiety":1}}
+      ],
+      "joanaResponse": "Du redest nicht zu viel. Es ist nur schwer für mich, alles auf einmal zu verarbeiten."
+    },
+    {
+      "playerOptions": [
+        {"text": "Willst du, dass wir das morgen nochmal besprechen?", "scores":{"trust":1,"anxiety":0}},
+        {"text": "Ich glaube, ich habe etwas falsch gemacht.", "scores":{"trust":0,"anxiety":1}, "forceNextScene":"anxiety_scene"},
+        {"text": "Vielleicht war das ein Missverständnis.", "scores":{"trust":1,"anxiety":0}}
+      ],
+      "joanaResponse": "Nein, du hast nichts falsch gemacht. Es ist kompliziert, manchmal ist es nur meine eigene Unruhe."
+    },
+    {
+      "playerOptions": [
+        {"text": "Ich will, dass du dich wohlfühlst.", "scores":{"trust":1,"anxiety":0}},
+        {"text": "Ich weiß nicht, wie ich dir helfen kann.", "scores":{"trust":0,"anxiety":1}},
+        {"text": "Vielleicht sollten wir eine Pause machen?", "scores":{"trust":0,"anxiety":1}, "forceNextScene":"isolation_scene"}
+      ],
+      "joanaResponse": "Danke, dass du das sagst. Pausen sind manchmal nötig, aber ich will nicht, dass du dich zurückziehst."
+    }
+  ],
+  "nextSceneLogic": [
+    {"conditions":{"trust":5},"nextScene":"friend_scene"}
+  ]
+},
+{
+  "id":"therapy_scene",
+  "theme":"Therapie und Selbstreflexion",
+  "rounds":[
+    {
+      "playerOptions":[
+        {"text":"Sprichst du offen über alles in der Therapie?", "scores":{"trust":1,"anxiety":0}},
+        {"text":"Redest du auch mit Freunden darüber?", "scores":{"trust":1,"anxiety":0}, "forceNextScene":"friends_scene"},
+        {"text":"Fällt es dir schwer, über Gefühle zu sprechen?", "scores":{"trust":1,"anxiety":1}}
+      ],
+      "joanaResponse":"Manchmal ja, manchmal halte ich Dinge zurück. Es ist leichter, zu schreiben, als alles laut auszusprechen. Und bei dir? Fällt es dir leicht, über alles zu reden?"
+    },
+    {
+      "playerOptions":[
+        {"text":"Es fällt mir auch schwer, ehrlich zu sein.", "scores":{"trust":0,"anxiety":1}},
+        {"text":"Ich rede lieber über alltägliche Dinge.", "scores":{"trust":0,"anxiety":0}},
+        {"text":"Manchmal teile ich nur, was gerade erträglich ist.", "scores":{"trust":0,"anxiety":1}}
+      ],
+      "joanaResponse":"Genau so fühle ich mich oft. Teile nur das, was gerade geht. Alles andere bleibt im Raum zwischen uns, unausgesprochen."
+    },
+    {
+      "playerOptions":[
+        {"text":"Hast du etwas aus der Therapie mitgenommen?", "scores":{"trust":1,"anxiety":0}},
+        {"text":"Hilft es dir wirklich?", "scores":{"trust":1,"anxiety":1}},
+        {"text":"Gibt es Momente, die dich besonders beschäftigen?", "scores":{"trust":1,"anxiety":1}}
+      ],
+      "joanaResponse":"Es hilft, aber nicht immer wie erwartet. Manche Momente bleiben schwer, andere bringen Erleichterung. Ich frage mich, wie du mit solchen Momenten umgehst."
+    },
+    {
+      "playerOptions":[
+        {"text":"Ich versuche, mir selbst Raum zu geben.", "scores":{"trust":1,"anxiety":0}},
+        {"text":"Ich spreche mit jemandem, wenn es zu viel wird.", "scores":{"trust":1,"anxiety":0}},
+        {"text":"Manchmal weiß ich nicht, wie ich reagieren soll.", "scores":{"trust":0,"anxiety":1}}
+      ],
+      "joanaResponse":"Das klingt ähnlich wie bei mir. Manchmal hilft ein Gespräch, manchmal bleiben die Gedanken wie ein schwerer Schleier. Was macht dir am meisten Angst, wenn du darüber nachdenkst?"
+    },
+    {
+      "playerOptions":[
+        {"text":"Die Kontrolle zu verlieren.", "scores":{"trust":0,"anxiety":2}},
+        {"text":"Dass ich alleine damit bleibe.", "scores":{"trust":0,"anxiety":2}},
+        {"text":"Oder dass andere mich nicht verstehen.", "scores":{"trust":0,"anxiety":1}}
+      ],
+      "joanaResponse":"Ich kenne diese Angst. Sie sitzt oft tief, leise, ohne dass jemand sie sieht. Vielleicht sollten wir über etwas Leichteres reden, oder möchtest du, dass ich weiterschreibe?",
+      "forceNextScene":"meeting_scene"
+    }
+  ],
+  "nextSceneLogic":[
+    {"conditions":{"trust":7},"nextScene":"meeting_scene"}
+  ]
+},
+{
+  "id":"friends_scene",
+  "theme":"Freunde und soziale Kontakte",
+  "rounds":[
+    {
+      "playerOptions":[
+        {"text":"Treffen dich deine Freunde noch oft?", "scores":{"trust":1,"anxiety":0}},
+        {"text":"Hast du dich in letzter Zeit mit jemandem getroffen?", "scores":{"trust":1,"anxiety":0}},
+        {"text":"Redest du viel mit deinen Freunden?", "scores":{"trust":1,"anxiety":0}}
+      ],
+      "joanaResponse":"Es kommt vor, dass ich sie sehe. Manchmal fühlt es sich normal an, manchmal fehlt mir die Energie, den Kontakt zu halten."
+    },
+    {
+      "playerOptions":[
+        {"text":"Fühlst du dich verstanden von ihnen?", "scores":{"trust":1,"anxiety":1}},
+        {"text":"Vertrauen sie dir wirklich?", "scores":{"trust":1,"anxiety":0}},
+        {"text":"Oder merkst du, dass du dich oft verstellst?", "scores":{"trust":0,"anxiety":1}}
+      ],
+      "joanaResponse":"Einige verstehen mich, andere nicht ganz. Oft frage ich mich, ob sie merken, wie viel ich zurückhalte. Ich glaube, sie spüren es nur selten."
+    },
+    {
+      "playerOptions":[
+        {"text":"Willst du mal etwas zusammen unternehmen?", "scores":{"trust":1,"anxiety":0}, "forceNextScene":"meeting_scene"},
+        {"text":"Fällt es dir schwer, dich zu verabreden?", "scores":{"trust":1,"anxiety":1}},
+        {"text":"Oder genießt du lieber Zeit allein?", "scores":{"trust":0,"anxiety":0}}
+      ],
+      "joanaResponse":"Ich schwanke oft. Treffen kann gut tun, aber auch anstrengend sein. Manchmal ist es leichter, einfach in Ruhe für sich zu sein. Was machst du, wenn dir danach ist, Leute zu sehen?"
+    },
+    {
+      "playerOptions":[
+        {"text":"Ich erzähle dir von meinen Freunden, wenn du magst.", "scores":{"trust":1,"anxiety":0}},
+        {"text":"Gibt es Menschen, die dir besonders wichtig sind?", "scores":{"trust":1,"anxiety":0}},
+        {"text":"Manchmal verliert man ja auch den Kontakt, oder?", "scores":{"trust":1,"anxiety":1} "forceNextScene":"conflict_scene"},
+        {"text":"Soll ich dir Gesellschaft leisten, wenn du willst?", "scores":{"trust":1,"anxiety":0}, "forceNextScene":"meeting_scene"}
+      ],
+      "joanaResponse":"Es gibt schon Leute, deren Nähe ich spüre, selbst wenn wir uns selten sehen. Aber manchmal ist die Stille lauter als jedes Gespräch. Und ja, Gesellschaft kann ein kleiner Anker sein, selbst wenn ich nicht viel sage."
+    },
+    {
+      "playerOptions":[
+        {"text":"Möchtest du, dass ich dich mal begleite?", "scores":{"trust":1,"anxiety":0}, "forceNextScene":"meeting_scene"},
+        {"text":"Oder lieber noch etwas Zeit allein?", "scores":{"trust":0,"anxiety":0}},
+        {"text":"Magst du mir erzählen, wie es deinen Freunden geht?", "scores":{"trust":1,"anxiety":0}}
+      ],
+      "joanaResponse":"Vielleicht ist es gut, dass du da bist, auch wenn nur digital. Manchmal reicht es schon, dass jemand zuhört, ohne zu urteilen. Was tust du, wenn du merkst, dass jemand dir wichtig ist?"
+    }
+  ],
+  "nextSceneLogic":[
+    {"conditions":{"trust":5},"nextScene":"meeting_scene"}
+  ]
+},
+{
+  "id": "meeting_scene",
+  "theme": "Treffen planen",
+  "rounds": [
+    {
+      "playerOptions": [
+        {"text": "Wollen wir uns am Wochenende treffen?", "scores": {"trust":1,"anxiety":0}},
+        {"text": "Wie wäre es mit einem kleinen Spaziergang?", "scores": {"trust":1,"anxiety":0}},
+        {"text": "Vielleicht lieber unter der Woche?", "scores": {"trust":0,"anxiety":1}}
+      ],
+      "joanaResponse": "Ein Treffen kann viel bedeuten. Ich frage mich manchmal, ob es alles komplizierter macht oder nur Klarheit bringt. Was meinst du?"
+    },
+    {
+      "playerOptions": [
+        {"text": "Nachmittags oder abends?", "scores": {"trust":1,"anxiety":0}},
+        {"text": "Wir könnten Kaffee trinken gehen.", "scores": {"trust":1,"anxiety":0}},
+        {"text": "Vielleicht lieber etwas ruhiges?", "scores": {"trust":0,"anxiety":1}}
+      ],
+      "joanaResponse": "Nachmittags klingt ruhig, abends intensiver. Ich bin mir nicht sicher, wie ich mich fühle, aber ich will, dass es passt."
+    },
+    {
+      "playerOptions": [
+        {"text": "Treffen bei dir oder bei mir?", "scores": {"trust":0,"anxiety":1}},
+        {"text": "Vielleicht draußen an der frischen Luft?", "scores": {"trust":1,"anxiety":0}},
+        {"text": "Oder einen neutralen Ort wählen?", "scores": {"trust":1,"anxiety":0}}
+      ],
+      "joanaResponse": "Draußen könnte gut sein, die Luft hilft, die Gedanken zu ordnen. Ein neutraler Ort gibt Sicherheit, aber ich frage mich, ob wir dann wirklich wir selbst sein können."
+    },
+    {
+      "playerOptions": [
+        {"text": "Willst du allein kommen oder sollen Freunde dabei sein?", "scores": {"trust":0,"anxiety":1}},
+        {"text": "Wir treffen uns nur zu zweit.", "scores": {"trust":1,"anxiety":0} "forceNextScene":"conflict_scene"},
+        {"text": "Vielleicht ein kleiner Kreis?", "scores": {"trust":1,"anxiety":0}}
+      ],
+      "joanaResponse": "Nur wir beide klingt intensiv, vielleicht zu viel auf einmal. Ein kleiner Kreis könnte helfen, aber es ändert die Dynamik. Ich weiß nicht, was besser ist."
+    },
+    {
+      "playerOptions": [
+        {"text": "Sollen wir vorher telefonieren?", "scores": {"trust":1,"anxiety":0}},
+        {"text": "Alles über Nachrichten klären.", "scores": {"trust":0,"anxiety":1}},
+        {"text": "Vielleicht ein kurzes Video?", "scores": {"trust":1,"anxiety":0}, "forceNextScene":"friends_scene"}
+      ],
+      "joanaResponse": "Telefonieren könnte beruhigen, aber auch Nervosität bringen. Video zeigt mehr, aber macht alles greifbarer. Ich frage mich, ob wir es richtig einschätzen."
+    }
+  ]
+},
+    {
+      "id": "start",
+      "theme": "Erstes Kennenlernen",
+      "rounds": [
+        {
+          "playerOptions": [
+            {"text": "Hi… ich wollte einfach mal schreiben.", "scores": {"trust":1,"anxiety":0}},
+            {"text": "Wie geht’s dir heute?", "scores": {"trust":1,"anxiety":0}},
+            {"text": "treffen", "scores": {"trust":1,"anxiety":0}, "forceNextScene":"meeting_scene"},
+            {"text": "Erzähl mir ein bisschen von deinem Tag.", "scores": {"trust":1,"anxiety":0}}
+          ],
+          "joanaResponse": "Danke, dass du schreibst. Ich frage mich selbst, wie ich den Tag überstehen soll. Und du? Wie ist dein Tag bisher?"
+        },
+        {
+          "playerOptions": [
+            {"text": "Alles okay, ein normaler Tag.", "scores": {"trust":0,"anxiety":0}},
+            {"text": "Ich bin gerade ziemlich gestresst.", "scores": {"trust":0,"anxiety":1}},
+            {"text": "Mir geht es gut, aber etwas müde.", "scores": {"trust":0,"anxiety":0}}
+          ],
+          "joanaResponse": "Verstehe. Bei mir wechseln ruhige Momente mit diesen leisen, drückenden Gedanken. Was machst du, um den Kopf frei zu bekommen?"
+        },
+        {
+          "playerOptions": [
+            {"text": "Ich höre Musik, das hilft mir.", "scores": {"trust":1,"anxiety":0}},
+            {"text": "Ich gehe spazieren, das beruhigt mich.", "scores": {"trust":1,"anxiety":0}},
+            {"text": "Manchmal rede ich einfach mit Freunden.", "scores": {"trust":1,"anxiety":0}}
+          ],
+          "joanaResponse": "Musik und Bewegung klingen gut. Ich selbst merke oft, dass kleine Fluchten mich nur kurz trösten. Wie entscheidest du, wann es reicht?"
+        },
+        {
+          "playerOptions": [
+            {"text": "Ich höre auf mein Gefühl.", "scores": {"trust":1,"anxiety":0}},
+            {"text": "Ich versuche mich abzulenken, solange es geht.", "scores": {"trust":1,"anxiety":0}},
+            {"text": "Ich rede darüber, wenn es zu schwer wird.", "scores": {"trust":1,"anxiety":0}}
+          ],
+          "joanaResponse": "Das klingt klug. Ich habe oft Schwierigkeiten, die Grenze zu erkennen. Sag, interessierst du dich für Hobbys? Ich frage, weil ich manchmal darüber rede, wenn alles andere schwer fällt."
+        },
+        {
+          "playerOptions": [
+            {"text": "Ja, erzähl mal von deinen Hobbys.", "scores": {"trust":1,"anxiety":0}, "forceNextScene":"hobbies_scene"},
+            {"text": "Ich habe auch Hobbys, vielleicht tauschen wir uns aus?", "scores": {"trust":1,"anxiety":0}, "forceNextScene":"hobbies_scene"},
+            {"text": "Moment, ich möchte zuerst wissen, wie es dir geht.", "scores": {"trust":1,"anxiety":0}}
+          ],
+          "joanaResponse": "Hobbys können manchmal helfen, den Alltag zu ordnen. Ich mache Dinge, die mich beschäftigen, aber auch ablenken. Manchmal hilft das mehr, als Worte."
+        }
+      ],
+      "nextSceneLogic": [
+        {"conditions":{"trust":2},"nextScene":"work_scene"}
+      ]
+    },
+    {
+      "id": "hobbies_scene",
+      "theme": "Hobbys und Interessen",
+      "rounds": [
+        {
+          "playerOptions": [
+            {"text":"Welche Musik hörst du gern?", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Treibst du Sport?", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Malst du oder zeichnest du?", "scores":{"trust":1,"anxiety":0}}
+          ],
+          "joanaResponse":"Musik hilft mir manchmal, Gedanken zu ordnen. Sport ist eher kurzzeitig befreiend. Zeichnen oder Malen gibt mir Struktur, wenn alles andere wackelig ist."
+        },
+        {
+          "playerOptions": [
+            {"text":"Hast du Lieblingsbücher?", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Welche Filme magst du?", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Gibt es etwas, das dich inspiriert?", "scores":{"trust":1,"anxiety":0}}
+          ],
+          "joanaResponse":"Bücher sind wie Spiegel. Filme manchmal zu laut. Inspiration finde ich in kleinen Momenten, nicht immer in großen Gesten."
+        },
+        {
+          "playerOptions": [
+            {"text":"Hast du ein kreatives Projekt?", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Experimentierst du mit Musik?", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Wie verbringst du Freizeit?", "scores":{"trust":1,"anxiety":0}}
+          ],
+          "joanaResponse":"Ich arbeite an kleinen Projekten, die niemand sieht. Musik höre ich eher als Therapie. Freizeit? Ich versuche, den Kopf frei zu bekommen."
+        },
+        {
+          "playerOptions": [
+            {"text":"Was motiviert dich?", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Gibt es etwas, das dich runterzieht?", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Wie gehst du mit Langeweile um?", "scores":{"trust":1,"anxiety":0}}
+          ],
+          "joanaResponse":"Motivation kommt selten auf Knopfdruck. Dinge ziehen mich runter, oft ohne Grund. Langeweile ist ein Spiegel der eigenen Gedanken."
+        },
+        {
+          "playerOptions": [
+            {"text":"Danke fürs Teilen. Möchtest du über etwas anderes reden?", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Lass uns weiter schreiben.", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Ich möchte mehr von dir wissen.", "scores":{"trust":1,"anxiety":0}}
+          ],
+          "joanaResponse":"Alles klar. Wir können das Gespräch lenken, wie es passt. Manchmal ist es leichter, über Belangloses zu reden, manchmal über schwerere Dinge."
+        }
+      ],
+      "nextSceneLogic":[
+        {"conditions":{"trust":3},"nextScene":"work_scene"}
+      ]
+    },
+    {
+      "id":"work_scene",
+      "theme":"Alltag und Stress",
+      "rounds": [
+        {
+          "playerOptions":[
+            {"text":"Wie läuft die Arbeit?", "scores":{"trust":0,"anxiety":1}},
+            {"text":"Fühlst du dich überfordert?", "scores":{"trust":0,"anxiety":2}},
+            {"text":"Gibt es etwas, das dich stresst?", "scores":{"trust":0,"anxiety":1}}
+          ],
+          "joanaResponse":"Manchmal ist die Arbeit nur noch Routine. Es zieht Energie, die ich kaum spüre. Wie gehst du mit solchen Momenten um?"
+        },
+        {
+          "playerOptions":[
+            {"text":"Ich versuche Pausen zu machen.", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Ich lenke mich ab, so gut es geht.", "scores":{"trust":1,"anxiety":1}},
+            {"text":"Ich rede mit jemandem darüber.", "scores":{"trust":1,"anxiety":0}}
+          ],
+          "joanaResponse":"Pausen sind wichtig, Ablenkung hilft kurz. Reden ist schwer, aber manchmal notwendig. Ich selbst kämpfe oft damit."
+        },
+        {
+          "playerOptions":[
+            {"text":"Was machst du nach der Arbeit?", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Hast du Rituale zum Runterkommen?", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Wie lange hältst du durch?", "scores":{"trust":0,"anxiety":1}}
+          ],
+          "joanaResponse":"Ich versuche kleine Rituale. Manchmal funktioniert es, manchmal nicht. Die Zeit nach der Arbeit kann gleichzeitig Ruhe und Druck sein."
+        },
+        {
+          "playerOptions":[
+            {"text":"Wie fühlst du dich heute?", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Ist alles okay?", "scores":{"trust":0,"anxiety":1}},
+            {"text":"Möchtest du darüber reden?", "scores":{"trust":1,"anxiety":0}}
+          ],
+          "joanaResponse":"Gefühle wechseln schnell. Mal ruhig, mal beklemmend. Reden kann helfen, aber manchmal fehlen die Worte."
+        },
+        {
+          "playerOptions":[
+            {"text":"Möchtest du etwas unternehmen?", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Lass uns über etwas anderes reden.", "scores":{"trust":1,"anxiety":0}},
+            {"text":"Erzähl mir mehr von dir.", "scores":{"trust":1,"anxiety":0}}
+          ],
+          "joanaResponse":"Manchmal möchte ich raus, manchmal nur schreiben. Es hängt von der Stimmung ab. Es ist schwer zu sagen, was jetzt richtig ist."
+        }
+      ],
+      "nextSceneLogic":[
+        {"conditions":{"trust":6},"nextScene":"therapy_scene"}
+      ]
+    }
+  ],
+  "endings": [
+    {
+      "conditions": {"trust":8, "anxiety":1, "obsession":0, "social_risk":0},
+      "joanaResponse": "Wir stehen uns gegenüber, und trotz aller Unsicherheit spüre ich Vertrauen.",
+      "narrative": "Er tritt an den vereinbarten Ort. Joana ist schon da, ruhig, beobachtend. Die Luft zwischen ihnen ist schwer, doch nicht bedrückend. Jeder Schritt, jedes Atemholen ist bewusst, als würden sie versuchen, die Zeit zu dehnen. Sie lächelt leicht, nickt ihm zu, und für einen Moment fühlt sich alles möglich an – aber die Schatten der Vergangenheit flüstern immer noch leise. Ein Hauch von Nervosität, gemischt mit Hoffnung, webt die Szene zu einer Mischung aus Klarheit und Erwartung."
+    },
+    {
+      "conditions": {"trust":5, "anxiety":3, "obsession":1, "social_risk":0},
+      "joanaResponse": "Wir stehen uns gegenüber. Ich spüre deine Unsicherheit, und meine eigene mischt sich darunter.",
+      "narrative": "Das Treffen beginnt mit einer leisen Spannung. Worte kommen stockend, Blicke weichen ab und wieder zu. Joana lächelt, doch es ist ein vorsichtiges, fast prüfendes Lächeln. Die Gedanken kreisen um die Vergangenheit, um mögliche Fehler, um die Angst, etwas falsch zu machen. Die Begegnung ist intensiv, fast greifbar, und jeder Schritt fühlt sich an wie ein Tanz auf dünnem Eis. Ein Moment, der beide gleichzeitig anzieht und zurückhält."
+    },
+    {
+      "conditions": {"trust":3, "anxiety":5, "obsession":2, "social_risk":1},
+      "joanaResponse": "Es ist kompliziert, und ich spüre deine Unsicherheit. Ich frage mich, ob wir bereit sind.",
+      "narrative": "Sie treffen sich an einem neutralen Ort. Worte stolpern, Pausen füllen die Stille. Joana wirkt abwesend, manchmal schaut sie auf ihr Handy, manchmal verliert sie sich in den Augen des Gegenübers. Der Moment ist schwer, die Anspannung fast körperlich spürbar. Der Wunsch nach Nähe kämpft gegen die Furcht, verletzt zu werden. Jeder Versuch, etwas Natürliches zu schaffen, wird von unterschwelliger Unsicherheit erschwert. Die Begegnung bleibt unruhig, ein schmaler Grat zwischen Hoffnung und Rückzug."
+    },
+    {
+      "conditions": {"trust":2, "anxiety":6, "obsession":3, "social_risk":2},
+      "joanaResponse": "Ich weiß nicht, ob wir uns wirklich verstehen können. Alles wirkt so schwer und kompliziert.",
+      "narrative": "Das Treffen beginnt holprig. Worte klingen fremd, Gesten wirken unkoordiniert. Joana zieht sich immer wieder leicht zurück, der andere versucht Anschluss zu finden, stolpert aber über eigene Unsicherheit. Die Luft ist geladen, jedes Lachen klingt gezwungen, jede Pause zu lang. Beide spüren die Distanz, und obwohl sie sich nahe sein wollen, bleiben sie gefangen in unausgesprochenen Erwartungen. Der Moment wirkt bedrückend, fast unangenehm, und die Begegnung endet, bevor sie wirklich begonnen hat."
+    },
+    {
+      "conditions": {"trust":1, "anxiety":7, "obsession":4, "social_risk":3},
+      "joanaResponse": "Ich fühle mich unwohl. Vielleicht war das ein Fehler.",
+      "narrative": "Sie treffen sich, aber die Spannung ist unerträglich. Missverständnisse häufen sich, Blicke vermeiden einander, und Worte prallen ab. Joana wirkt verschlossen, zurückhaltend, jeder Versuch, Nähe herzustellen, wird von Angst überschattet. Die Begegnung fühlt sich wie ein Labyrinth aus Unsicherheit und Fehltritten an, in dem beide gefangen sind. Am Ende gehen sie auseinander, ohne dass etwas wirklich gesagt oder verstanden wurde, und das Gefühl von Bedrückung und Scheitern bleibt hängen."
+    }
+  ]
+}
