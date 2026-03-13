@@ -214,7 +214,7 @@
       "playerOptions":[
         {"text":"Ich erzähle dir von meinen Freunden, wenn du magst.", "scores":{"trust":1,"anxiety":0}},
         {"text":"Gibt es Menschen, die dir besonders wichtig sind?", "scores":{"trust":1,"anxiety":0}},
-        {"text":"Manchmal verliert man ja auch den Kontakt, oder?", "scores":{"trust":1,"anxiety":1} "forceNextScene":"conflict_scene"},
+        {"text":"Manchmal verliert man ja auch den Kontakt, oder?", "scores":{"trust":1,"anxiety":1}, "forceNextScene":"conflict_scene"},
         {"text":"Soll ich dir Gesellschaft leisten, wenn du willst?", "scores":{"trust":1,"anxiety":0}, "forceNextScene":"meeting_scene"}
       ],
       "joanaResponse":"Es gibt schon Leute, deren Nähe ich spüre, selbst wenn wir uns selten sehen. Aber manchmal ist die Stille lauter als jedes Gespräch. Und ja, Gesellschaft kann ein kleiner Anker sein, selbst wenn ich nicht viel sage."
@@ -263,7 +263,7 @@
     {
       "playerOptions": [
         {"text": "Willst du allein kommen oder sollen Freunde dabei sein?", "scores": {"trust":0,"anxiety":1}},
-        {"text": "Wir treffen uns nur zu zweit.", "scores": {"trust":1,"anxiety":0} "forceNextScene":"conflict_scene"},
+        {"text": "Wir treffen uns nur zu zweit.", "scores": {"trust":1,"anxiety":0}, "forceNextScene":"conflict_scene"},
         {"text": "Vielleicht ein kleiner Kreis?", "scores": {"trust":1,"anxiety":0}}
       ],
       "joanaResponse": "Nur wir beide klingt intensiv, vielleicht zu viel auf einmal. Ein kleiner Kreis könnte helfen, aber es ändert die Dynamik. Ich weiß nicht, was besser ist."
