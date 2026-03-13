@@ -65,7 +65,7 @@ const waitButton=document.getElementById("wait-button")
 const statusDot=document.getElementById("status-dot")
 const statusText=document.getElementById("status-text")
 
-fetch("story.json").then(r=>r.json()).then(data=>{
+fetch("./story.json").then(r=>r.json()).then(data=>{
     story=data.scenes
     endings=data.endings
     loadScene("start")
